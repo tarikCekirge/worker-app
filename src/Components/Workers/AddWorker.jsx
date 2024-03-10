@@ -65,7 +65,7 @@ const AddWorker = (props) => {
       {error && <ErrorModal onConfirm={errorHandler} error={error} />}
       <Card className="mt-10">
         <h1 className="text-center text-2xl font-bold text-white">Maaş Otomasyonu</h1>
-        <form onSubmit={addWorkerHandler}>
+        <form onSubmit={addWorkerHandler} ref={myForm}>
           <div className="grid gap-1">
             <label className="text-white font-semibold" htmlFor="name">
               Çalışan İsmi
