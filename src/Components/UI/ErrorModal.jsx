@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Button from "./Button";
 import Card from "./Card";
 import { createPortal } from "react-dom";
@@ -6,6 +6,23 @@ import { createPortal } from "react-dom";
 const ErrorModal = (props) => {
   const { onConfirm, error } = props;
   const { title, message } = error;
+  const cleanUpRef = useRef();
+
+  useEffect(() => {
+    console.log("Popup Açıldı");
+
+    return () => {
+      if (cleanUpRef.current) {
+        console.log("Popup Kaldırıldı");
+      }
+    };
+  }, [cleanUpRef]);
+
+  useEffect(() => {
+    return () => {
+      cleanUpRef.current = true;
+    };
+  }, []);
   return (
     <>
       {createPortal(
